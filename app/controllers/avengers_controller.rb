@@ -13,6 +13,7 @@ class AvengersController < ApplicationController
 
   def create
     @avenger = Avenger.new(avenger_params)
+    @avenger.user = current_user
     if @avenger.save
       redirect_to avenger_path(@avenger)
     else
