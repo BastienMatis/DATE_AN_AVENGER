@@ -5,8 +5,6 @@
           <h3>Create a Booking</h3>
       <%= simple_form_for [@avenger, @booking], method: :post, url: avenger_bookings_path(@avenger) do |f| %>
         <div class="form-inputs">
-          <%= f.association :user %>
-          <%= f.association :avenger %>
           <%= f.input :location %>
           <%= f.input :start_time %>
           <%= f.input :end_time %>

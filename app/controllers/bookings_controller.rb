@@ -7,8 +7,10 @@ class BookingsController < ApplicationController
   def create
     @booking = Booking.new(booking_params)
     @booking.avenger = @avenger
+    @booking.user = current_user
     if @booking.save
-      redirect_to avenger_path(@avenger)
+      redirect_to avenger_path(@avenger) 
+      # path to change to user_path(@user) (or profile path but something to do with where useres view their own bookings)
     else
       render :new
     end
