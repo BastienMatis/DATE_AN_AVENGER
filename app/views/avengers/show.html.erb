@@ -1,21 +1,21 @@
 <h1> <%= @avenger.name %> </h1>
 
 <%= link_to "Book Me", new_avenger_booking_path(@avenger) %>
-<div cass="container">
+<div class="container">
   <div class="row">
     <div class=class="row justify-content-center">
   <div class="cards">
     <div class="card-category">
-      <%= avengers.each do |avenger| %>
-      <%= avenger.name %>
-      <%= avenger.description %>
-      <% avenger.price %>
-      <% end %>
+
+      <%= @avenger.name %>
+      <%= @avenger.description %>
+      <%= @avenger.price %>
     </div>
-    <% link_to ‘back’, avengers_path %>
-    <% link_to ‘delete’, avenger_path(@avenger) %>
-    <% link_to ‘edit’, edit_avenger_path(@avenger) %>
+    </div>
+    <% link_to 'Back', avengers_path %>
+    <% link_to 'Delete', avenger_path(@avenger) %>
+    <% link_to 'Edit', edit_avenger_path(@avenger) %>
   </div>
 </div>
 </div>
-</div>
+
