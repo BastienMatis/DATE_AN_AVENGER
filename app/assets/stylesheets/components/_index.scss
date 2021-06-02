@@ -3,7 +3,7 @@
 @import "avatar";
 @import 'header';
 @import "navbar";
-
+@import "map";
 
 // .btn.btn-primary {
 //   background: #C80000;
@@ -11,3 +11,6 @@
 //   border-radius : 12px;
 // }
 
+.left-panel {
+width: 50%;
+}

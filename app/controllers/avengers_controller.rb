@@ -2,6 +2,15 @@ class AvengersController < ApplicationController
   before_action :set_avenger, only: [:show, :edit, :update, :destroy]
   def index
     @avengers = Avenger.all
+
+    @markers = @avengers.geocoded.map do |avenger|
+      {
+        lat: avenger.latitude,
+        lng: avenger.longitude,
+        info_window: render_to_string(partial: "info_window", locals: { avenger: avenger }),
+        image_url: helpers.asset_url('avenger_logo.png')
+      }
+    end
   end
 
   def show

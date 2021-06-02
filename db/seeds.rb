@@ -8,15 +8,17 @@
 require 'faker'
 Booking.destroy_all
 Avenger.destroy_all
+User.destroy_all
 puts 'seed the user owner with owner@test.com and password 123456 '
 user = User.create(email: "owner@test.com", password: "123456")
 puts 'seeding 10 Avengers...'
 10.times do
   avenger = Avenger.new(
+  user_id: user.id,
   name: Faker::Superhero.name,
   description: Faker::Superhero.descriptor,
   price: Faker::Commerce.price(range: 100..300.0, as_string: true),
-  user_id: user.id
+  location: Faker::Address.city
   )
   avenger.save!
 end
