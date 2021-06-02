@@ -1,0 +1,19 @@
+<div class="container py-2">
+  <div class="row">
+    <div class="col-12 col-md-6 offset-lg-3">
+      <div class="bg-white rounded p-3 shadow">
+          <h3>Create an Avenger Profile</h3>
+      <%= simple_form_for [@avenger] do |f| %>
+        <div class="form-inputs">
+          <%= f.input :name %>
+          <%= f.input :price %>
+          <%= f.input :description %>
+          <%= f.submit "Create Avenger", class: "btn btn-success" %>
+        </div>
+      <% end %>
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
