@@ -12,9 +12,11 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css">
 
 
+    <%= stylesheet_pack_tag 'application' %>
   </head>
 
   <body>
+    <%= render 'pages/navbar' %>
     <%= yield %>
     <%= render "shared/footer" %>
   </body>

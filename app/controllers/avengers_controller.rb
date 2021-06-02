@@ -2,6 +2,15 @@ class AvengersController < ApplicationController
   before_action :set_avenger, only: [:show, :edit, :update, :destroy]
   def index
     @avengers = Avenger.all
+
+    @markers = @avengers.geocoded.map do |avenger|
+      {
+        lat: avenger.latitude,
+        lng: avenger.longitude,
+        info_window: render_to_string(partial: "info_window", locals: { avenger: avenger }),
+        image_url: helpers.asset_url('avenger_logo.png')
+      }
+    end
   end
 
   def show
@@ -16,10 +25,10 @@ class AvengersController < ApplicationController
   def create
     @avenger = Avenger.new(avenger_params)
     @avenger.user = current_user
-    if @avenger.save
+    if @avenger.save!
       redirect_to avenger_path(@avenger)
     else
-      render :new
+      render :new 
     end
   end
 
@@ -43,6 +52,6 @@ class AvengersController < ApplicationController
   end
 
   def avenger_params
-    params.require(:avenger).permit(:name, :description, :price)
+    params.require(:avenger).permit(:name, :description, :price, :location)
   end
 end

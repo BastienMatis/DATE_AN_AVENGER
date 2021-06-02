@@ -5,11 +5,12 @@
 @import "avengers/footer";
 @import "navbar";
 @import "avengers/home";
+@import "button";
+@import "card";
+@import 'header';
+@import "map";
 
-
-// .btn.btn-primary {
-//   background: #C80000;
-//   padding: 24px;
-//   border-radius : 12px;
-// }
+.left-panel {
+width: 50%;
+}
 

@@ -1,6 +1,29 @@
-<p>We have <%= @avengers.count %> avengers</p>
-<% @avengers.each do | avenger | %>
-<p>id= <%= avenger.id  %>, name=<%= avenger.name  %></p>
-<%= link_to avenger.name, avenger_path(avenger) %>
-<% end %>
+<div class="d-flex">
+  <div class="left-panel">
+    <div class="container py-5">
+  <div class="d-flex align-items-center justify-content-between mb-3">
+  <h2 class="mb-0">Our offers</h2>
+  <div><%= link_to 'Create a New Avenger', new_avenger_path, class:'btn-red' %></div>
+    </div>
+      <div class="row">
+        <% @avengers.each do |avenger| %>
+          <div class="co-12 colsm-6 col-md-4">
+            <%= link_to avenger_path(avenger), class:'text-decoration-none' do %>
+              <div class="card-index" data-aos="zoom-in">
+                <%=avenger.name %>
+              </div>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
 
+  <div class="map-container">
+    <div id="map"
+        style="width: 100%; height: 100vh;"
+        data-markers="<%= @markers.to_json %>"
+        data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
+    </div>
+  </div>
+</div>
