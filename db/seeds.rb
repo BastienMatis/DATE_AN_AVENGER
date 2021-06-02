@@ -15,7 +15,7 @@ puts 'seeding 10 Avengers...'
   avenger = Avenger.new(
   name: Faker::Superhero.name,
   description: Faker::Superhero.descriptor,
-  price: Faker::Commerce.price(range: 0..10.0, as_string: true),
+  price: Faker::Commerce.price(range: 100..300.0, as_string: true),
   user_id: user.id
   )
   avenger.save!
