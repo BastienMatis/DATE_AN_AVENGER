@@ -14,6 +14,8 @@ class AvengersController < ApplicationController
   end
 
   def show
+    @avengers = Avenger.all
+    @avenger = Avenger.find(params[:id])
   end
 
   def new

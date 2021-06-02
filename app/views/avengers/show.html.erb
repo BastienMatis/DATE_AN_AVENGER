@@ -3,12 +3,10 @@
       <h3><%= @avenger.description %></h3>
        <h3><%= @avenger.price %></h3>
   <div class="container">
-
     <div class="row">
-      <div class=class="row justify-content-center">
+      <div class="row justify-content-center">
     <div class="cards">
       <div class="card-category">
-
       </div>
       </div>
       <%= link_to "Book Me", new_avenger_booking_path(@avenger), class: 'btn-red' %>
@@ -20,5 +18,8 @@
 </div>
 
 <%= link_to 'Back', avengers_path %>
-<%= link_to 'Delete', avenger_path(@avenger), method: :delete %>
-<%= link_to 'Edit', edit_avenger_path(@avenger) %>
+<% if @avenger.user == current_user %>
+    <%= link_to 'Delete', avenger_path(@avenger), method: :delete, data: {confirm: "Are You Sure?"} %>
+    <%= link_to 'Edit', edit_avenger_path(@avenger) %>
+    <% end %>
+
