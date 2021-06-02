@@ -1,21 +1,24 @@
-<h1> <%= @avenger.name %> </h1>
+<div class='container-show'>
+  <h2> <%= @avenger.name %></h2>
+      <h3><%= @avenger.description %></h3>
+       <h3><%= @avenger.price %></h3>
+  <div class="container">
 
-<%= link_to "Book Me", new_avenger_booking_path(@avenger) %>
-<div class="container">
-  <div class="row">
-    <div class=class="row justify-content-center">
-  <div class="cards">
-    <div class="card-category">
+    <div class="row">
+      <div class=class="row justify-content-center">
+    <div class="cards">
+      <div class="card-category">
 
-      <%= @avenger.name %>
-      <%= @avenger.description %>
-      <%= @avenger.price %>
+      </div>
+      </div>
+      <%= link_to "Book Me", new_avenger_booking_path(@avenger), class: 'btn-red' %>
     </div>
-    </div>
-    <%= link_to 'Back', avengers_path %>
-    <%= link_to 'Delete', avenger_path(@avenger) %>
-    <%= link_to 'Edit', edit_avenger_path(@avenger) %>
   </div>
-</div>
+  </div>
+
+  <div><%= image_tag 'Chris_Evans.jpeg', class: 'avenger-pic' %></div>
 </div>
 
+<%= link_to 'Back', avengers_path %>
+<%= link_to 'Delete', avenger_path(@avenger), method: :delete %>
+<%= link_to 'Edit', edit_avenger_path(@avenger) %>
