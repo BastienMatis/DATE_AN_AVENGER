@@ -5,4 +5,5 @@ Rails.application.routes.draw do
   resources :avengers do
     resources :bookings, only: [:new, :create]
   end
+  get :my_account, to: 'users#my_account'
 end
