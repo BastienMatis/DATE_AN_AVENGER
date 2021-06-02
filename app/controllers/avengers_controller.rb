@@ -23,10 +23,10 @@ class AvengersController < ApplicationController
   def create
     @avenger = Avenger.new(avenger_params)
     @avenger.user = current_user
-    if @avenger.save
+    if @avenger.save!
       redirect_to avenger_path(@avenger)
     else
-      render :new
+      render :new 
     end
   end
 
@@ -50,6 +50,6 @@ class AvengersController < ApplicationController
   end
 
   def avenger_params
-    params.require(:avenger).permit(:name, :description, :price)
+    params.require(:avenger).permit(:name, :description, :price, :location)
   end
 end
