@@ -1,1 +1,32 @@
 // Specific CSS for your home-page
+.container {
+  margin: 20px;
+  width: auto;
+}
+
+.how-it-works {
+  text-align: center;
+  padding: 24px;
+  font-family: Open Sans;
+}
+
+section {
+  /*padding: 30px;*/
+  display: flex;
+  justify-content: space-between;
+  margin: 40px;
+}
+
+.card {
+  padding: 50px;
+  text-align: center;
+  box-shadow: 0 0 8px #DCDCDC;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  margin: 10px
+}
+.card img_tag {
+  height: 100px;
+  opacity: 0.9;
+  box-shadow: 0 0 8px #DCDCDC;
+}
