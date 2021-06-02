@@ -14,8 +14,10 @@
     </div>
     </div>
     <%= link_to 'Back', avengers_path %>
-    <%= link_to 'Delete', avenger_path(@avenger) %>
+    <% if @avenger.user == current_user %>
+    <%= link_to 'Delete', avenger_path(@avenger), method: :delete, data: {confirm: "Are You Sure?"} %>
     <%= link_to 'Edit', edit_avenger_path(@avenger) %>
+    <% end %>
   </div>
 </div>
 </div>

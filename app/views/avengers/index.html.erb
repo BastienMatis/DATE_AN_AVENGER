@@ -1,5 +1,6 @@
 <p>We have <%= @avengers.count %> avengers</p>
 <% @avengers.each do | avenger | %>
 <p>id= <%= avenger.id  %>, name=<%= avenger.name  %></p>
+<%= link_to avenger.name, avenger_path(avenger) %>
 <% end %>
 
