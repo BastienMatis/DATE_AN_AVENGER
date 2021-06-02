@@ -2,5 +2,5 @@
 
 <%= render 'form', avenger: @avenger %>
 
-<%= link_to 'view' @avenger %>
+<%= link_to 'view', edit_avenger_path(@avenger) %>
 <%= link_to 'update', avenger_path %>
