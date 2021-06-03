@@ -1,0 +1,27 @@
+.index-body {
+
+}
+
+.index-container {
+  // display: flex
+  // flex-direction: column;
+  // width: 50%;
+  // margin-bottom: 0;
+}
+
+.card-index {
+  // grid-template-columns: 1fr 1fr;
+}
+
+.card-index img {
+  height: 200px;
+  width: 100%;
+  object-fit: cover;
+}
+
+.card-index-infos {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding: 16px;
+}
