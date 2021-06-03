@@ -16,6 +16,7 @@ class AvengersController < ApplicationController
   def show
     @avengers = Avenger.all
     @avenger = Avenger.find(params[:id])
+    @booking = Booking.new
     @review = Review.new
     @reviews = Review.where(avenger_id: @avenger.id)
     @booked_by_user = if user_signed_in?
