@@ -12,7 +12,6 @@
             <% if @avenger_owner  %>
               <div class="d-flex flex-row-reverse">
                 <button type="button" class="btn-grey" data-toggle="modal" data-target="#editAvenger">Edit Me</button>
-                <%= link_to 'Edit', edit_avenger_path, class:'btn-grey' %>
                 <%= link_to 'Delete', avenger_path(@avenger), method: :delete, class:'btn-grey' %>
               </div>
             <% end %>
