@@ -18,9 +18,11 @@
           </div>
         </div>
       </div>
-      <% if @booked_by_user %>
+
+
+  <% if @booked_by_user %>
   <%= link_to 'Leave a review',  new_avenger_review_path(@avenger), class: 'btn-red' %>
-<% end %>
+  <% end %>
 
   <div class="row">
     <% @reviews.each do |review| %>
@@ -53,7 +55,7 @@
             <%= f.input :start_time, as: :datetime, html5: true%>
             <%= f.input :end_time, as: :datetime, html5: true%>
           </div>
-        
+
       </div>
       <div class="modal-footer">
         <%= f.submit "Create Booking", class: 'btn-red' %>
