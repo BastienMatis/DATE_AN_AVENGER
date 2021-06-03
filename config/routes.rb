@@ -6,4 +6,5 @@ Rails.application.routes.draw do
     resources :bookings, only: [:new, :create]
   end
   get :my_account, to: 'users#my_account'
+  resources :bookings, only: [:destroy]
 end
