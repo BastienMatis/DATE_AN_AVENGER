@@ -4,11 +4,33 @@
   margin: 20px;
   padding-bottom: 200px;
 }
+.showcard {
+  overflow: hidden;
+  height: 400px;
+  background: white;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  display: flex;
+  margin: 0 auto;
 
-.avenger-pic {
-  margin: 100px;
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 400px;
+  .avenger-pic {
+  height: 400px;
+  width: 500px;
+  object-fit: cover;
 }
+  .desc {
+    font-size: 20px ;
+  }
+}
+
+.showcard-location {
+  font-family: Open Sans;
+  font-style: italic;
+  font-size: 1rem ;
+  color: grey;
+}
+
+  .fa-map-marker-alt {
+    font-size: 22px;
+    color: #C80000;
+    padding: 6px;
+  }
