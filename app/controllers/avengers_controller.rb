@@ -19,11 +19,11 @@ class AvengersController < ApplicationController
     @booking = Booking.new
     @review = Review.new
     @reviews = Review.where(avenger_id: @avenger.id)
-    @booked_by_user = if user_signed_in?
-                        Booking.exists?(user: current_user, avenger: @avenger)
-                      else
-                        false
-                      end
+    if user_signed_in?
+      @booked_by_user = Booking.exists?(user: current_user, avenger: @avenger)
+    else
+      @booked_by_user = false
+    end
   end
 
   def new
