@@ -1,7 +1,8 @@
 class AvengersController < ApplicationController
   before_action :set_avenger, only: [:show, :edit, :update, :destroy]
+
   def index
-    @avengers = Avenger.all
+    @avengers = Avenger.order(created_at: :desc)
 
     @markers = @avengers.geocoded.map do |avenger|
       {
@@ -17,6 +18,7 @@ class AvengersController < ApplicationController
     @avengers = Avenger.all
     @avenger = Avenger.find(params[:id])
     @booking = Booking.new
+    @avenger_owner = current_user == @avenger.user
   end
 
   def new
@@ -35,7 +37,7 @@ class AvengersController < ApplicationController
 
   def destroy
     @avenger.destroy
-    redirect_to avengers_path
+    redirect_to my_account_path
   end
 
   def edit

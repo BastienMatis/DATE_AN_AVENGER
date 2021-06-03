@@ -50,20 +50,21 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body">
-          <%= simple_form_for [@avenger], method: :post, url: avengers_path do |f| %>
+      <%= simple_form_for [@avenger], method: :post, url: avengers_path do |f| %>
+        <div class="modal-body">
           <div class="form-inputs">
-          <%= f.input :name %>
-          <%= f.input :price %>
-          <%= f.input :description %>
-          <%= f.input :location %>
+            <%= f.input :name %>
+            <%= f.input :price %>
+            <%= f.input :description %>
+            <%= f.input :location %>
+            <%= f.input :photo, as: :file %>
           </div>
-      </div>
-      <div class="modal-footer">
-        <%= f.submit "Create Avenger", class: 'btn-red' %>
-        <% end %>
-        <button type="button" class="btn-grey" data-dismiss="modal">Close</button>
-      </div>
+        </div>
+        <div class="modal-footer">
+          <%= f.submit "Create Avenger", class: 'btn-red' %>
+          <button type="button" class="btn-grey" data-dismiss="modal">Close</button>
+        </div>
+      <% end %>
     </div>
   </div>
 </div>
