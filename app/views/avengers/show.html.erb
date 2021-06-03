@@ -1,25 +1,65 @@
-<div class='container-show'>
-  <h2> <%= @avenger.name %></h2>
-      <h3><%= @avenger.description %></h3>
-       <h3><%= @avenger.price %></h3>
-  <div class="container">
-    <div class="row">
-      <div class="row justify-content-center">
-    <div class="cards">
-      <div class="card-category">
+
+
+    <div class="w-100 p-5">
+      <%= link_to 'Back', avengers_path, class:'btn-grey' %>
+      <div class="showcard mt-4">
+        <div>
+          <%= image_tag 'Chris_Evans.jpeg', class: 'avenger-pic' %>
+        </div>
+        <div class="p-4 h-100 d-flex flex-column justify-content-between w-100">
+          <div>
+            <h2><%= @avenger.name %> <span class="showcard-location"><%= @avenger.location %><i class="fas fa-map-marker-alt"></i></span></h2>
+            <p class="desc"><%= @avenger.description %></p>
+          </div>
+          <div class="d-flex align-items-end justify-content-end w-100">
+            <p class="mr-3"><%= @avenger.price %></p>
+            <!-- Button trigger modal -->
+            <button type="button" class="btn-red" data-toggle="modal" data-target="#exampleModalCenter">Book Me</button>
+          </div>
+        </div>
       </div>
+      <% if @booked_by_user %>
+  <%= link_to 'Leave a review',  new_avenger_review_path(@avenger), class: 'btn-red' %>
+<% end %>
+
+  <div class="row">
+    <% @reviews.each do |review| %>
+      <div class="co-12 colsm-6 col-md-4">
+        <div class="card-index" data-aos="zoom-in">
+          <%=review.content %>
+          <%=review.rating %>
+          <%= link_to "Remove", review_path(review),
+          method: :delete, data: { confirm: "Are you sure?" }, class: 'btn-red'%>
+        </div>
       </div>
-      <%= link_to "Book Me", new_avenger_booking_path(@avenger), class: 'btn-red' %>
+    <% end %>
+  </div>
+    </div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Create a Booking</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          <%= simple_form_for [@avenger, @booking], method: :post, url: avenger_bookings_path(@avenger) do |f| %>
+          <div class="form-inputs">
+            <%= f.input :location %>
+            <%= f.input :start_time, as: :datetime, html5: true%>
+            <%= f.input :end_time, as: :datetime, html5: true%>
+          </div>
+        
+      </div>
+      <div class="modal-footer">
+        <%= f.submit "Create Booking", class: 'btn-red' %>
+        <% end %>
+        <button type="button" class="btn-grey" data-dismiss="modal">Close</button>
+      </div>
     </div>
   </div>
-  </div>
-
-  <div><%= image_tag 'Chris_Evans.jpeg', class: 'avenger-pic' %></div>
 </div>
-
-<%= link_to 'Back', avengers_path %>
-<% if @avenger.user == current_user %>
-    <%= link_to 'Delete', avenger_path(@avenger), method: :delete, data: {confirm: "Are You Sure?"} %>
-    <%= link_to 'Edit', edit_avenger_path(@avenger) %>
-    <% end %>
-

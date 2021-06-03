@@ -9,7 +9,7 @@ class BookingsController < ApplicationController
     @booking.avenger = @avenger
     @booking.user = current_user
     if @booking.save
-      redirect_to avenger_path(@avenger) 
+      redirect_to my_account_path(@user)
       # path to change to user_path(@user) (or profile path but something to do with where useres view their own bookings)
     else
       render :new
@@ -19,7 +19,7 @@ class BookingsController < ApplicationController
   def destroy
     @booking = Booking.find(params[:id])
     @booking.destroy
-    redirect_to_avengers_path
+    redirect_to my_account_path(@user)
   end
 
   private
