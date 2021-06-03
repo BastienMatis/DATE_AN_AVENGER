@@ -16,6 +16,7 @@ class AvengersController < ApplicationController
   def show
     @avengers = Avenger.all
     @avenger = Avenger.find(params[:id])
+    @booking = Booking.new
   end
 
   def new
