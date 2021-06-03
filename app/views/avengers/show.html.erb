@@ -18,6 +18,22 @@
           </div>
         </div>
       </div>
+      <% if @booked_by_user %>
+  <%= link_to 'Leave a review',  new_avenger_review_path(@avenger), class: 'btn-red' %>
+<% end %>
+
+  <div class="row">
+    <% @reviews.each do |review| %>
+      <div class="co-12 colsm-6 col-md-4">
+        <div class="card-index" data-aos="zoom-in">
+          <%=review.content %>
+          <%=review.rating %>
+          <%= link_to "Remove", review_path(review),
+          method: :delete, data: { confirm: "Are you sure?" }, class: 'btn-red'%>
+        </div>
+      </div>
+    <% end %>
+  </div>
     </div>
 
 <!-- Modal -->
