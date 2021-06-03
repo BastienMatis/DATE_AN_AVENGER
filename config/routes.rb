@@ -5,7 +5,10 @@ Rails.application.routes.draw do
   resources :bookings, only: [:destroy]
   resources :avengers do
     resources :bookings, only: [:new, :create]
+    resources :reviews, only: [:new, :create]
   end
+  resources :reviews, only: [:destroy]
   resources :bookings, only: [:destroy]
   get :my_account, to: 'users#my_account'
+  resources :bookings, only: [:destroy]
 end
