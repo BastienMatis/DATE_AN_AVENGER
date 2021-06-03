@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   resources :avengers do
     resources :bookings, only: [:new, :create]
+    resources :reviews, only: [:new, :create]
   end
+  resources :reviews, only: :destroy
   get :my_account, to: 'users#my_account'
 end
