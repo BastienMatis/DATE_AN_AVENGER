@@ -4,10 +4,11 @@
       <h1><%= @user.email %></h1>
     <!-- LEFT: AVATAR HERE -->
   </div>
+
   <div class="row justify-content-between align-items-start">
     <div class="col-6 text-center">
       <h2 class="mb-5">My Avengers</h2>
-      <%= link_to 'add an avenger', new_avenger_path, class: 'nav-avenger my-4'  %>
+      <button type="button" class="btn-red" data-toggle="modal" data-target="#exampleModalCenter">Create an Avenger</button>
       <div class="row mt-3">
         <% @avengers.each do |avenger| %>
           <div class="col-4 colsm-6 col-md-4">
@@ -19,8 +20,8 @@
           </div>
         <% end %>
       </div>
-
-    </div>
+   </div>
+    
     <div class="col-6 ">
       <ul class="nav nav-tabs" id="myTab" role="tablist">
         <li class="nav-item">
@@ -66,6 +67,35 @@
 </div>
 
 
+<!-- The Modal For Create an Avenger-START -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Create an Avenger Profile</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <%= simple_form_for [@avenger], method: :post, url: avengers_path do |f| %>
+        <div class="modal-body">
+          <div class="form-inputs">
+            <%= f.input :name %>
+            <%= f.input :price %>
+            <%= f.input :description %>
+            <%= f.input :location %>
+            <%= f.input :photo, as: :file %>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <%= f.submit "Create Avenger", class: 'btn-red' %>
+          <button type="button" class="btn-grey" data-dismiss="modal">Close</button>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+<!-- The Modal For Create an Avenger-END -->
 
-       <span class="mb-2 d-block"><small><em class="text-muted"><%= "You haven't booked a date with an Avenger yet!" if current_user.bookings.empty? %></em></small></span>
+
 
