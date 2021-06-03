@@ -12,13 +12,17 @@
     <div class="d-flex justify-content-between my-4">
         <div>
           <h2>Your Avengers</h2>
-          <%= link_to 'add an avenger', new_avenger_path, class: 'btn btn-avenger' %>
+         
+
+          <!-- Button trigger modal START -->
+          <button type="button" class="btn-red" data-toggle="modal" data-target="#exampleModalCenter">Create an Avenger</button>
+          <!-- Button trigger modal END-->
+
           <%#= link_to 'Delete', avenger_path(avenger), method: :delete, data: {confirm: "Are You Sure?"} %>
           <%#= link_to 'Edit', edit_avenger_path(avenger) %>
         </div>
       </div>
     </div>
-
 
   <div class="row my-2">
   <h2>Your Bookings</h2>
@@ -35,3 +39,32 @@
       </div>
     <% end %>
   </div>
+
+<!-- The Modal For Create an Avenger-START -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Create an Avenger Profile</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          <%= simple_form_for [@avenger], method: :post, url: avengers_path do |f| %>
+          <div class="form-inputs">
+          <%= f.input :name %>
+          <%= f.input :price %>
+          <%= f.input :description %>
+          <%= f.input :location %>
+          </div>
+      </div>
+      <div class="modal-footer">
+        <%= f.submit "Create Avenger", class: 'btn-red' %>
+        <% end %>
+        <button type="button" class="btn-grey" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- The Modal For Create an Avenger-END -->
