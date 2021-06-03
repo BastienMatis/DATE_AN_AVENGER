@@ -7,7 +7,9 @@
         <div class="index-container">
           <% @avengers.each do |avenger| %>
             <div class="card-index">
-              <%= image_tag 'Chris_Evans.jpg' %>
+              <% if avenger.photo.attached? %>
+                <%= cl_image_tag avenger.photo.key, height: 300, width: 400, crop: :fill %>
+              <% end %>
               <%= link_to avenger_path(avenger), class:'show-link' do %>
               <div class="card-index-infos">
                 <div><h2><%=avenger.name %></h2>

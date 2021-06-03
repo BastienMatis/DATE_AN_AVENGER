@@ -5,7 +5,9 @@
 
       <div class="showcard mt-4">
         <div>
-          <%= image_tag 'Chris_Evans.jpeg', class: 'avenger-pic' %>
+          <% if @avenger.photo.attached? %>
+          <%= cl_image_tag @avenger.photo.key, height: 300, width: 400, crop: :fill, class: 'avenger-pic'%>
+          <% end %>
         </div>
         <div class="p-4 h-100 d-flex flex-column justify-content-between w-100">
           <div class="justify-content-between w-100">
@@ -104,5 +106,7 @@
     </div>
   </div>
 </div>
+
+
 <!-- Edit Avenger Modal END -->
 

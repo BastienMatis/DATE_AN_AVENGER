@@ -62,6 +62,6 @@ class AvengersController < ApplicationController
   end
 
   def avenger_params
-    params.require(:avenger).permit(:name, :description, :price, :location)
+    params.require(:avenger).permit(:name, :description, :price, :location, :photo)
   end
 end
