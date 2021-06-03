@@ -17,12 +17,25 @@
   <div><%= image_tag 'Chris_Evans.jpeg', class: 'avenger-pic' %></div>
 </div>
 
-<%= link_to 'Back', avengers_path %>
+<%= link_to 'Back', avengers_path, class: 'btn-red' %>
 <% if @avenger.user == current_user %>
-  <%= link_to 'Delete', avenger_path(@avenger), method: :delete, data: {confirm: "Are You Sure?"} %>
-  <%= link_to 'Edit', edit_avenger_path(@avenger) %>
+  <%= link_to 'Delete', avenger_path(@avenger), method: :delete, data: {confirm: "Are You Sure?"}, class: 'btn-red'%>
+  <%= link_to 'Edit', edit_avenger_path(@avenger), class: 'btn-red' %>
 <% end %>
 
+<% if @booked_by_user %>
+  <%= link_to 'Leave a review',  new_avenger_review_path(@avenger), class: 'btn-red' %>
+<% end %>
 
-<%= link_to 'Leave a review',  new_avenger_review_path(@avenger) %>
-
+<div class="row">
+  <% @reviews.each do |review| %>
+    <div class="co-12 colsm-6 col-md-4">
+      <div class="card-index" data-aos="zoom-in">
+        <%=review.content %>
+        <%=review.rating %>
+        <%= link_to "Remove", review_path(review),
+        method: :delete, data: { confirm: "Are you sure?" }, class: 'btn-red'%>
+      </div>
+    </div>
+  <% end %>
+</div>

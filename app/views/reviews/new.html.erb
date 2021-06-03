@@ -3,12 +3,12 @@
     <div class="col-12 col-md-6 offset-lg-3">
       <div class="bg-white rounded p-3 shadow">
         <h3>Leave your avenger review here</h3>
-        <%= simple_form_for [@avenger, @review], method: :post, url: avenger_reviews_path(@avenger) do |f| %>
-        <div class="form-inputs">
-          <%= f.input :content %>
-          <%= f.input :rating %>
-          <%= f.submit "Create Review", class: "btn btn-success" %>
-        </div>
+        <%= simple_form_for [@avenger, @review] do |f| %>
+          <div class="form-inputs">
+            <%= f.input :content %>
+            <%= f.input :rating, collection: 1..5 %>
+            <%= f.submit "Create Review", class: "btn btn-success" %>
+          </div>
         <% end %>
       </div>
     </div>
@@ -16,3 +16,8 @@
 </div>
 </div>
 </div>
+
+<%= link_to 'view', edit_avenger_path(@avenger) %>
+
+
+

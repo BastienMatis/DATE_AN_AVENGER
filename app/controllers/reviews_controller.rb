@@ -6,9 +6,7 @@ class ReviewsController < ApplicationController
   end
 
   def create
-    @review = Review.new(review_params)
-    @review.avenger = @avenger
-    @review.user = current_user
+    @review = Review.new(review_params.merge(avenger_id: @avenger.id, user_id: current_user.id)) #merging @avenger.id to review
     if @review.save
       redirect_to avenger_path(@avenger)
       # path to change to user_path(@user) (or profile path but something to do with where useres view their own bookings)
@@ -28,7 +26,7 @@ class ReviewsController < ApplicationController
     params.require(:review).permit(:content, :rating)
   end
 
-   def set_avenger
+  def set_avenger
     @avenger = Avenger.find(params[:avenger_id])
   end
 
