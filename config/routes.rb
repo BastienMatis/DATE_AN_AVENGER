@@ -10,4 +10,5 @@ Rails.application.routes.draw do
   resources :reviews, only: [:destroy]
   resources :bookings, only: [:destroy]
   get :my_account, to: 'users#my_account'
+  resources :bookings, only: [:destroy]
 end
