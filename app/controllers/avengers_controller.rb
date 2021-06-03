@@ -19,6 +19,13 @@ class AvengersController < ApplicationController
     @avenger = Avenger.find(params[:id])
     @booking = Booking.new
     @avenger_owner = current_user == @avenger.user
+    @review = Review.new
+    @reviews = Review.where(avenger_id: @avenger.id)
+    @booked_by_user = if user_signed_in?
+                        Booking.exists?(user: current_user, avenger: @avenger)
+                      else
+                        false
+                      end
   end
 
   def new
@@ -31,7 +38,7 @@ class AvengersController < ApplicationController
     if @avenger.save
       redirect_to avenger_path(@avenger)
     else
-      render :new 
+      render :new
     end
   end
 
