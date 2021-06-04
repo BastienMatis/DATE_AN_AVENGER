@@ -1,86 +1,81 @@
 <div class="footer-super-margin">
   <div class="container mb-4 ml-4 container-account">
-    <div class="profile row align-items-center">
+    <div class="profile row align-items-center mt-3">
         <img alt="Chloe Balanche" class="avatar-large mr-2" src="https://res.cloudinary.com/wagon/image/upload/c_fill,g_face,h_200,w_200/v1619968189/kjpxyr85dbcktwhwld4q.jpg">
         <h1><%= @user.email %></h1>
       <!-- LEFT: AVATAR HERE -->
     </div>
-
-    <div class="row justify-content-between align-items-start">
-      <div class="col-6 text-center">
-        <h2 class="mb-3">My Avengers</h2>
-        <button type="button" class="btn-red" data-toggle="modal" data-target="#exampleModalCenter">Create an Avenger</button>
-         <div class="index-container my-4">
-           <% @avengers.each do |avenger| %>
-            <div class="card-index ">
-              <% if avenger.photo.attached? %>
-              <%= cl_image_tag avenger.photo.key, height: 300, width: 400, crop: :fill %>
-              <% end %>
-              <%= link_to avenger_path(avenger), class:'show-link' do %>
-                <div class="card-index-infos">
-                  <div><h2><%=avenger.name %></h2>
-                   <p><%=avenger.description %></p>
-                  </div>
-                <div>
-                 <p class="card-index-price">£<%=avenger.price %> per hour</p>
-             </div>
+  <div class="row justify-content-between align-items-start">
+    <div class="col-6 text-center">
+      <h2 class="mb-3">My Avengers</h2>
+      <button type="button" class="btn-red" data-toggle="modal" data-target="#exampleModalCenter">Create an Avenger</button>
+       <div class="index-container my-4">
+         <% @avengers.each do |avenger| %>
+          <div class="card-index ">
+            <% if avenger.photo.attached? %>
+            <%= cl_image_tag avenger.photo.key, height: 300, width: 400, crop: :fill %>
+            <% end %>
+            <%= link_to avenger_path(avenger), class:'show-link' do %>
+              <div class="card-index-infos ">
+                <div><h2><%=avenger.name %></h2>
+                 <p><%=avenger.description %></p>
+                </div>
+              <div>
+               <p class="card-index-price">£<%=avenger.price %> per hour</p>
            </div>
-           <% end %>
          </div>
          <% end %>
-      </div>
-    </div>
-
-
-
-      <div class="col-6 ">
-        <ul class="nav nav-tabs" id="myTab" role="tablist">
-          <li class="nav-item">
-            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">
-            <h2 class="booking-request">My bookings</h2></a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">
-            <h2 class="booking-request">My requests</h2></a>
-          </li>
-        </ul>
-        <div class="tab-content" id="myTabContent">
-          <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-            <div class="row mt-3">
-              <% @bookings.each do |booking| %>
-                <div class="col-12">
-                  <div class="card-index" data-aos="zoom-in">
-                    <%= link_to avenger_path(booking.avenger), class:'text-decoration-none' do %>
-                      <%= booking.avenger.name %>
+       </div>
+       <% end %>
+   </div>
+  </div>
+    <div class="col-6 ">
+      <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item">
+          <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">
+          <h2 class="booking-request">My bookings</h2></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">
+          <h2 class="booking-request">My requests</h2></a>
+        </li>
+      </ul>
+      <div class="tab-content" id="myTabContent">
+        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+          <div class="row mt-3">
+            <% @bookings.each do |booking| %>
+              <div class="col-12">
+                <div class="card-index" data-aos="zoom-in">
+                  <%= link_to avenger_path(booking.avenger), class:'text-decoration-none' do %>
+                    <div class="avenger"><%= booking.avenger.name %></div>
                       <%= link_to booking_path(booking), method: :delete, data: { confirm: 'Are you sure you want to delete this booking?' } do %>
-                      <i class="far fa-trash-alt"></i>
+                        <i class="far fa-trash-alt"></i>
                       <% end %>
-                    <% end %>
-                    <p class="date"><%= booking.start_time.strftime("%A, %b %d")%> - <%= booking.end_time.strftime("%A, %b %d")%></p>
-                  </div>
-                </div>
-              <% end %>
-            </div>
-          </div>
-          <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-            <div class="row mt-3">
-              <% @my_received_bookings.each do |request| %>
-                <div class="col-12">
-                  <%= link_to avenger_path(request.avenger), class:'text-decoration-none' do %>
-                    <div class="card-index" data-aos="zoom-in">
-                      <%=request.avenger.name %>
-                    </div>
                   <% end %>
+                  <p class="date"><%= booking.start_time.strftime("%A, %b %d")%> - <%= booking.end_time.strftime("%A, %b %d")%></p>
                 </div>
-              <% end %>
-            </div>
+              </div>
+            <% end %>
+          </div>
+        </div>
+        <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+          <div class="row mt-3">
+            <% @my_received_bookings.each do |request| %>
+              <div class="col-12">
+                <%= link_to avenger_path(request.avenger), class:'text-decoration-none' do %>
+                  <div class="card-index" data-aos="zoom-in">
+                    <div class="avenger"><%=request.avenger.name %></div>
+                  </div>
+                <% end %>
+              </div>
+            <% end %>
           </div>
         </div>
       </div>
     </div>
   </div>
 </div>
-
+</div>
 <!-- The Modal For Create an Avenger-START -->
 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
@@ -91,7 +86,7 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <%= simple_form_for [@avenger],remote: true, method: :post, url: avengers_path do |f| %>
+      <%= simple_form_for [@avenger], remote: true, method: :post, url: avengers_path do |f| %>
         <div class="modal-body">
           <div class="form-inputs">
             <%= f.input :name %>
@@ -110,6 +105,3 @@
   </div>
 </div>
 <!-- The Modal For Create an Avenger-END -->
-
-
-
