@@ -1,9 +1,4 @@
 // Specific CSS for your home-page
-.container {
-  margin: 20px;
-  width: auto;
-}
-
 .how-it-works {
   text-align: center;
   padding: 24px;
@@ -12,20 +7,26 @@
 
 section {
   /*padding: 30px;*/
-  display: flex;
-  justify-content: space-between;
+  // display: flex;
+  // justify-content: space-between;
   margin: 40px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 32px;
 }
 
 .card-home {
-  padding: 50px;
+  padding-top: 30px;
+  padding-left: 30px;
+  padding-right: 30px;
   text-align: center;
   box-shadow: 0 0 8px #DCDCDC;
   border-radius: 5px;
   margin-bottom: 20px;
   margin: 10px;
+  background-color: white;
     img {
-  // height: 100px;
+  height: 100px;
   opacity: 0.9;
   box-shadow: 0 0 8px #DCDCDC;
   }
