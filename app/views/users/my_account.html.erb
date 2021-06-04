@@ -7,11 +7,11 @@
 
   <div class="row justify-content-between align-items-start">
     <div class="col-6 text-center">
-      <h2 class="mb-5">My Avengers</h2>
+      <h2 class="mb-3">My Avengers</h2>
       <button type="button" class="btn-red" data-toggle="modal" data-target="#exampleModalCenter">Create an Avenger</button>
-       <div class="index-container">
+       <div class="index-container my-4">
          <% @avengers.each do |avenger| %>
-          <div class="card-index">
+          <div class="card-index ">
             <% if avenger.photo.attached? %>
             <%= cl_image_tag avenger.photo.key, height: 300, width: 400, crop: :fill %>
             <% end %>
@@ -52,7 +52,7 @@
                   <%= link_to avenger_path(booking.avenger), class:'text-decoration-none' do %>
                     <%= booking.avenger.name %>
                   <% end %>
-                  <p><%= booking.start_time.strftime("%A, %b %d")%> - <%= booking.end_time.strftime("%A, %b %d")%></p>
+                  <p class="date"><%= booking.start_time.strftime("%A, %b %d")%> - <%= booking.end_time.strftime("%A, %b %d")%></p>
                 </div>
               </div>
             <% end %>
@@ -80,7 +80,7 @@
 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
-      <div class="modal-header">
+      <div class="modal-header m">
         <h5 class="modal-title" id="exampleModalLongTitle">Create an Avenger Profile</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
