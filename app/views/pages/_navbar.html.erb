@@ -3,6 +3,18 @@
     <%= image_tag 'logo.png' %>
   <% end %>
 
+  <!-- search bar in navbar START-->
+  <div >
+    <%= form_tag avengers_path, method: :get, class: "navbar-search" do %>
+      <%= text_field_tag :query,
+        params[:query],
+        class: "form-control",
+        placeholder: "Search"
+      %>
+    <% end %>
+  </div>
+<!-- search bar in navbar END -->
+
   <div class ="navbar-container">
     <div class="d-flex align-items-center">
       <%= link_to "Our Avengers", avengers_path, class: "nav-avenger" %>

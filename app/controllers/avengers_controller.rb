@@ -2,7 +2,11 @@ class AvengersController < ApplicationController
   before_action :set_avenger, only: [:show, :edit, :update, :destroy]
 
   def index
-    @avengers = Avenger.order(created_at: :desc)
+    if params[:query].present?
+      @avengers = Avenger.search_by_name_and_description(params[:query])
+    else
+      @avengers = Avenger.order(created_at: :desc)
+    end
 
     @markers = @avengers.geocoded.map do |avenger|
       {
@@ -43,8 +47,14 @@ class AvengersController < ApplicationController
   end
 
   def destroy
-    @avenger.destroy
-    redirect_to my_account_path
+    if @avenger.bookings.empty?
+      @avenger.destroy
+      redirect_to my_account_path
+    else
+      flash[:alert] = "You can't delete this Avenger, because somebody has booked it"
+    end 
+    
+    
   end
 
   def edit
