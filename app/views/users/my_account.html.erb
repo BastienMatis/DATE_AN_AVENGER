@@ -1,5 +1,5 @@
 <div class="container mb-4 ml-4 container-account">
-  <div class="profile row align-items-center">
+  <div class="profile row align-items-center mt-3">
       <img alt="Chloe Balanche" class="avatar-large mr-2" src="https://res.cloudinary.com/wagon/image/upload/c_fill,g_face,h_200,w_200/v1619968189/kjpxyr85dbcktwhwld4q.jpg">
       <h1><%= @user.email %></h1>
     <!-- LEFT: AVATAR HERE -->
@@ -16,7 +16,7 @@
             <%= cl_image_tag avenger.photo.key, height: 300, width: 400, crop: :fill %>
             <% end %>
             <%= link_to avenger_path(avenger), class:'show-link' do %>
-              <div class="card-index-infos">
+              <div class="card-index-infos ">
                 <div><h2><%=avenger.name %></h2>
                  <p><%=avenger.description %></p>
                 </div>
@@ -50,7 +50,7 @@
               <div class="col-12">
                 <div class="card-index" data-aos="zoom-in">
                   <%= link_to avenger_path(booking.avenger), class:'text-decoration-none' do %>
-                    <%= booking.avenger.name %>
+                    <div class="avenger"><%= booking.avenger.name %></div>
                   <% end %>
                   <p class="date"><%= booking.start_time.strftime("%A, %b %d")%> - <%= booking.end_time.strftime("%A, %b %d")%></p>
                 </div>
@@ -64,7 +64,7 @@
               <div class="col-12">
                 <%= link_to avenger_path(request.avenger), class:'text-decoration-none' do %>
                   <div class="card-index" data-aos="zoom-in">
-                    <%=request.avenger.name %>
+                    <div class="avenger"><%=request.avenger.name %></div>
                   </div>
                 <% end %>
               </div>
