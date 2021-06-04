@@ -84,5 +84,10 @@
 
 .navbar-search {
   display: flex;
+  position: relative;
+  left: 100px;
 }
 
+.form-control {
+  border-radius: 20px;
+}
