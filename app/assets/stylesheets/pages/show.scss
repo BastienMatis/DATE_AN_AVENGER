@@ -34,34 +34,19 @@
     padding: 6px;
   }
 
-  .review-container {
-    display: flex;
-    justify-content: space-between;
+
       .review-card {
         // flex-grow: 1;
         background-color: white;
         width: 96%;
-        height: 20vh;
+        height: 200px;
         box-shadow: 0 0 15px rgba(0,0,0,0.2);
         margin-left: 16px;
         margin-right: 16px;
         align-self: center;
         position: relative;
       }
-        h1 {
 
-        }
-
-      .review-btn {
-        align-self: flex-end !important;
-        flex-grow: 3;
-        padding: 8px;
-        margin-right: 16px;
-        position: absolute;
-        right: -8px;
-        top: 22px;
-      }
-  }
 
   #review-button {
     align-self: flex-end;
