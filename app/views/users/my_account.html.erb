@@ -9,19 +9,29 @@
     <div class="col-6 text-center">
       <h2 class="mb-5">My Avengers</h2>
       <button type="button" class="btn-red" data-toggle="modal" data-target="#exampleModalCenter">Create an Avenger</button>
-      <div class="row mt-3">
-        <% @avengers.each do |avenger| %>
-          <div class="col-4 colsm-6 col-md-4">
-            <%= link_to avenger_path(avenger), class:'text-decoration-none' do %>
-              <div class="card-index" data-aos="zoom-in">
-                <%=avenger.name %>
-              </div>
+       <div class="index-container">
+         <% @avengers.each do |avenger| %>
+          <div class="card-index">
+            <% if avenger.photo.attached? %>
+            <%= cl_image_tag avenger.photo.key, height: 300, width: 400, crop: :fill %>
             <% end %>
-          </div>
-        <% end %>
-      </div>
+            <%= link_to avenger_path(avenger), class:'show-link' do %>
+              <div class="card-index-infos">
+                <div><h2><%=avenger.name %></h2>
+                 <p><%=avenger.description %></p>
+                </div>
+              <div>
+               <p class="card-index-price">£<%=avenger.price %> per hour</p>
+           </div>
+         </div>
+         <% end %>
+       </div>
+       <% end %>
    </div>
-    
+  </div>
+
+
+
     <div class="col-6 ">
       <ul class="nav nav-tabs" id="myTab" role="tablist">
         <li class="nav-item">
@@ -64,7 +74,6 @@
       </div>
     </div>
   </div>
-</div>
 
 
 <!-- The Modal For Create an Avenger-START -->
