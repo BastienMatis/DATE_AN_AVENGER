@@ -31,24 +31,23 @@
       </div>
     </div>
 
-
-  <% if @booked_by_user %>
-  <%= link_to 'Leave a review',  new_avenger_review_path(@avenger), class: 'btn-red' %>
-  <% end %>
-
-  <div class="row">
-    <% @reviews.each do |review| %>
-      <div class="co-12 colsm-6 col-md-4">
-        <div class="card-index" data-aos="zoom-in">
-          <%=review.content %>
-          <%=review.rating %>
-          <%= link_to "Remove", review_path(review),
-          method: :delete, data: { confirm: "Are you sure?" }, class: 'btn-red'%>
+    <div class="p-4 h-100 d-flex flex-column justify-content-between w-100">
+      <% if @booked_by_user %>
+        <div class="d-flex flex-row-reverse", id="review-button">
+          <%= link_to 'Leave a review',  new_avenger_review_path(@avenger), class: 'btn-red' %>
+          <% end %>
+        </div>
+        <div class="review-container flex ">
+        <% @reviews.each do |review| %>
+          <div class="review-card" data-aos="zoom-in">
+            <h1><%=review.content %></h1>
+              <%=review.rating %>
+              <%= link_to "Remove", review_path(review),
+              method: :delete, data: { confirm: "Are you sure?" }, class: 'review-btn btn-grey'%>
+          </div>
+          <% end %>
         </div>
       </div>
-    <% end %>
-  </div>
- </div>
 
 <!-- Booking Modal START -->
 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
