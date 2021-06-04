@@ -1,53 +1,76 @@
+<!-- Avenger Show Card START -->
+<div class="w-100 p-5">
+  <%= link_to 'Back', avengers_path, class:'btn-grey' %>
 
-
-    <div class="w-100 p-5">
-      <%= link_to 'Back', avengers_path, class:'btn-grey' %>
-
-      <div class="showcard mt-4">
-        <div>
-          <% if @avenger.photo.attached? %>
-          <%= cl_image_tag @avenger.photo.key, height: 300, width: 400, crop: :fill, class: 'avenger-pic'%>
-          <% end %>
-        </div>
-        <div class="p-4 h-100 d-flex flex-column justify-content-between w-100">
-          <div class="justify-content-between w-100">
-            <% if @avenger_owner  %>
-              <div class="d-flex flex-row-reverse">
-                <button type="button" class="btn-grey" data-toggle="modal" data-target="#editAvenger">Edit Me</button>
-                <%= link_to 'Delete', avenger_path(@avenger), method: :delete, class:'btn-grey' %>
+  <div class="showcard mt-4">
+    <div>
+      <% if @avenger.photo.attached? %>
+      <%= cl_image_tag @avenger.photo.key, height: 300, width: 400, crop: :fill, class: 'avenger-pic'%>
+      <% end %>
+    </div>
+    <div class="p-4 h-100 d-flex flex-column justify-content-between w-100">
+      <div class="justify-content-between w-100">
+        <% if @avenger_owner  %>
+          <div class="d-flex flex-row-reverse">
+            <div class="dropdown">
+              <button class="btn btn-secondary " type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-ellipsis-v"></i>
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <button type="button" data-toggle="modal" data-target="#editAvenger">Edit Me</button>
+                <div>
+                  <%= link_to 'Delete', avenger_path(@avenger), method: :delete %>
+                </div>
               </div>
-            <% end %>
-            <div>
-              <h2><%= @avenger.name %> <span class="showcard-location"><%= @avenger.location %><i class="fas fa-map-marker-alt"></i></span></h2>
-              <p class="desc"><%= @avenger.description %></p>
             </div>
+
           </div>
-          <div class="d-flex align-items-end justify-content-end w-100">
-            <p class="mr-3">£<%= @avenger.price %> per hour</p>
-            <!-- Button trigger modal -->
-            <button type="button" class="btn-red" data-toggle="modal" data-target="#exampleModalCenter">Book Me</button>
-          </div>
+        <% end %>
+        <div>
+          <h2><%= @avenger.name %> <span class="showcard-location"><%= @avenger.location %><i class="fas fa-map-marker-alt"></i></span></h2>
+          <p class="desc"><%= @avenger.description %></p>
         </div>
+      </div>
+      <div class="d-flex align-items-end justify-content-end w-100">
+        <p class="mr-3">£<%= @avenger.price %> per hour</p>
+        <!-- Button trigger modal -->
+        <button type="button" class="btn-red" data-toggle="modal" data-target="#leaveReview">Create Review</button>
+        <button type="button" class="btn-red" data-toggle="modal" data-target="#exampleModalCenter">Book Me</button>
       </div>
     </div>
+  </div>
+</div>
+<!-- Avenger Show Card  -->
 
-    <div class="p-4 h-100 d-flex flex-column justify-content-between w-100">
-      <% if @booked_by_user %>
-        <div class="d-flex flex-row-reverse", id="review-button">
-          <%= link_to 'Leave a review',  new_avenger_review_path(@avenger), class: 'btn-red' %>
-          <% end %>
-        </div>
-        <div class="review-container flex ">
-        <% @reviews.each do |review| %>
-          <div class="review-card" data-aos="zoom-in">
-            <h1><%=review.content %></h1>
-              <%=review.rating %>
-              <%= link_to "Remove", review_path(review),
-              method: :delete, data: { confirm: "Are you sure?" }, class: 'review-btn btn-grey'%>
+<!-- Review Card START -->
+    <div class="p-4 w-100 container">
+        
+          <div class="row">
+          <% @reviews.each do |review| %>
+            <div class="review-card d-flex flex-column justify-content-between p-4 col-6" data-aos="zoom-in">
+              <div>
+                <div class="d-flex justify-content-between"> 
+                  <h4><%=review.title %></h4>
+                  <div class="d-flex">
+                  <% 5.times do |index| %>
+                    <i class="fas fa-star <%= index <= review.rating ? 'text-warning': 'text-muted' %>"></i> 
+                  <% end %>
+                </div>  
+                </div>
+                <p><%=review.content %></p>
+                
+              </div>
+              <% if user_signed_in? && review.user == current_user %>
+                <div class="w-100 justify-content-end d-flex">
+                  <%= link_to "Remove", review_path(review), method: :delete, class:'btn-grey' %>
+                </div>
+              <% end %>
+            </div>
+            <% end %>
           </div>
-          <% end %>
-        </div>
+        
       </div>
+<!-- Review Card-->
 
 <!-- Booking Modal START -->
 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -74,7 +97,7 @@
     </div>
   </div>
 </div>
-<!-- Booking Modal END -->
+<!-- Booking Modal -->
 
 <!-- Edit Avenger Modal START -->
 <div class="modal fade" id="editAvenger" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -104,4 +127,32 @@
     </div>
   </div>
 </div>
-<!-- Edit Avenger Modal END -->
+<!-- Edit Avenger Modal -->
+
+<!-- Review Modal START -->
+<div class="modal fade" id="leaveReview" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Edit this Avenger</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <%= simple_form_for [@avenger, @review], remote: true do |f| %>
+        <div class="modal-body">
+          <div class="form-inputs">
+          <%= f.input :title %>
+          <%= f.input :content %>
+          <%= f.input :rating, collection: 1..5 %>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <%= f.submit "Create Review", class: 'btn-red' %>
+          <button type="button" class="btn-grey" data-dismiss="modal">Close</button>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+<!-- Review Modal -->

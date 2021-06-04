@@ -52,6 +52,9 @@
                   <div class="card-index" data-aos="zoom-in">
                     <%= link_to avenger_path(booking.avenger), class:'text-decoration-none' do %>
                       <%= booking.avenger.name %>
+                      <%= link_to booking_path(booking), method: :delete, data: { confirm: 'Are you sure you want to delete this booking?' } do %>
+                      <i class="far fa-trash-alt"></i>
+                      <% end %>
                     <% end %>
                     <p class="date"><%= booking.start_time.strftime("%A, %b %d")%> - <%= booking.end_time.strftime("%A, %b %d")%></p>
                   </div>

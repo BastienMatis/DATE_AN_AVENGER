@@ -53,8 +53,6 @@ class AvengersController < ApplicationController
     else
       flash[:alert] = "You can't delete this Avenger, because somebody has booked it"
     end 
-    
-    
   end
 
   def edit
